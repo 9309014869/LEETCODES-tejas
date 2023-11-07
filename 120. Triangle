@@ -1,0 +1,14 @@
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        // Modify the input triangle to store the minimum path sums.
+        for (int i = triangle.size() - 2; i >= 0; i--) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                int minPathSum = Math.min(triangle.get(i + 1).get(j), triangle.get(i + 1).get(j + 1)) + triangle.get(i).get(j);
+                triangle.get(i).set(j, minPathSum);
+            }
+        }
+
+        // The minimum path sum will be at the top of the modified triangle.
+        return triangle.get(0).get(0);
+    }
+}
